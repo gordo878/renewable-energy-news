@@ -1,0 +1,31 @@
+name: Daily News Agent
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Täglich um 6:00 UTC (7:00 oder 8:00 deutsche Zeit)
+  workflow_dispatch:  # Manueller Start möglich
+
+jobs:
+  fetch-and-send:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install requests openai
+    
+    - name: Run news agent
+      env:
+        NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        EMAIL_RECEIVER: ${{ secrets.EMAIL_RECEIVER }}
+      run: python news_agent.py
