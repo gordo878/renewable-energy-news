@@ -2,8 +2,8 @@ name: Daily News Agent
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Täglich um 6:00 UTC (7:00 oder 8:00 deutsche Zeit)
-  workflow_dispatch:  # Manueller Start möglich
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
 jobs:
   fetch-and-send:
