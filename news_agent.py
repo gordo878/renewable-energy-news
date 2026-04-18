@@ -14,14 +14,14 @@ EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_RECEIVER = os.environ.get("EMAIL_RECEIVER")
 # RSS-Feeds von Fachmedien
 RSS_FEEDS = {
-    "Recharge News": "[rechargenews.com](https://www.rechargenews.com/rss)",
-    "PV Magazine Global": "[pv-magazine.com](https://www.pv-magazine.com/feed/)",
-    "PV Magazine Germany": "[pv-magazine.de](https://www.pv-magazine.de/feed/)",
-    "Windpower Monthly": "[windpowermonthly.com](https://www.windpowermonthly.com/rss)",
-    "Energy Storage News": "[energy-storage.news](https://www.energy-storage.news/feed/)",
-    "Renews.biz": "[renews.biz](https://renews.biz/feed/)",
-    "Electrek": "[electrek.co](https://electrek.co/feed/)",
-    "CleanTechnica": "[cleantechnica.com](https://cleantechnica.com/feed/)",
+    "Recharge News": "https://www.rechargenews.com/rss",
+    "PV Magazine Global": "https://www.pv-magazine.com/feed/",
+    "PV Magazine Germany": "https://www.pv-magazine.de/feed/",
+    "Windpower Monthly": "https://www.windpowermonthly.com/rss",
+    "Energy Storage News": "https://www.energy-storage.news/feed/",
+    "Renews.biz": "https://renews.biz/feed/",
+    "Electrek": "https://electrek.co/feed/",
+    "CleanTechnica": "https://cleantechnica.com/feed/",
 }
 # Google News RSS für länderspezifische Suche
 GOOGLE_NEWS_COUNTRIES = {
@@ -69,10 +69,10 @@ def fetch_google_news():
     for country, query in GOOGLE_NEWS_COUNTRIES.items():
         try:
             # Google News RSS URL
-            url = f"[news.google.com](https://news.google.com/rss/search?q={query.replace()' ', '+')}+when:1d&hl=en"
+            url = f"https://news.google.com/rss/search?q={query.replace(' ', '+')}+when:1d&hl=en"
             
             if country == "Germany":
-                url = f"[news.google.com](https://news.google.com/rss/search?q={query.replace()' ', '+')}+when:1d&hl=de&gl=DE"
+                url = f"https://news.google.com/rss/search?q={query.replace(' ', '+')}+when:1d&hl=de&gl=DE"
             
             feed = feedparser.parse(url)
             
